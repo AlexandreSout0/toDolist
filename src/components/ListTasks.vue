@@ -18,10 +18,11 @@
                                 <v-btn color="grey-lighten" icon="mdi-dots-vertical" variante="text" v-bind="props" ></v-btn>                              
                             </template>
                             <v-list>
-                                <v-list-item>
+                                <v-list-item value="1">
                                     <v-list-item-title>Editar</v-list-item-title>
+                                </v-list-item>
+                                <v-list-item value="2">     
                                     <v-list-item-title>Deletar</v-list-item-title>
-
                                 </v-list-item>
                             </v-list>
                         </v-menu>               
