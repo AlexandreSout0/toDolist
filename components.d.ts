@@ -12,5 +12,6 @@ declare module 'vue' {
     ListTasks: typeof import('./src/components/ListTasks.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TodoList: typeof import('./src/components/TodoList.vue')['default']
   }
 }
