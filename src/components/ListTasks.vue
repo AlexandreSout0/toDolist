@@ -3,7 +3,7 @@
         <v-list lines="three" select-strategy="classic">
             <v-list-subheader>General</v-list-subheader>
 
-            <v-list-item v-for="task, index in props.tasks" :key="index" :value="index">
+            <v-list-item v-for="task, index in taskStore.tasks" :key="index" :value="index">
                 <template v-slot:prepend="{ isActive }">
                     <v-list-item-action start>
                         <v-checkbox-btn :model-value="isActive"></v-checkbox-btn>
@@ -19,26 +19,27 @@
                             </template>
                             <v-list>
                                 <v-list-item value="1">
-                                    <v-list-item-title>Editar</v-list-item-title>
+                                    <v-list-item-title @click="taskStore.toggleEdit(index)">Editar</v-list-item-title>
                                 </v-list-item>
                                 <v-list-item value="2">     
-                                    <v-list-item-title>Deletar</v-list-item-title>
+                                    <v-list-item-title @click="taskStore.toggleDelete(index)" >Deletar</v-list-item-title>
                                 </v-list-item>
                             </v-list>
                         </v-menu>               
                     </template>                
                 
             </v-list-item>
-        </v-list>   
+        </v-list> 
+        <DialogTasksField :dialog="taskStore.showDialogTasksField" :task="taskStore.tasks[taskStore.indexTaskSelected]"/>
+        <DialogDelete @toogleDelete="taskStore.toogleDelete" />   
     </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import DialogTasksField from './DialogTasksField.vue';
+import DialogDelete from './DialogDelete.vue';
+import { useTaskStore  } from '@/stores/task';
 
-const props = defineProps({
-    tasks: Object
-})
-
+const taskStore = useTaskStore();
 
 </script>
