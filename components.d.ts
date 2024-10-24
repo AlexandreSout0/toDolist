@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Alert: typeof import('./src/components/Alert.vue')['default']
     DialogDelete: typeof import('./src/components/DialogDelete.vue')['default']
     DialogTaskFields: typeof import('./src/components/DialogTasksField.vue')['default']
     DialogTasksField: typeof import('./src/components/DialogTasksField.vue')['default']

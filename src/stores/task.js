@@ -1,47 +1,41 @@
 import { defineStore } from 'pinia'
+ import { useAlertStore } from '@/stores/alert'
+ const alert = useAlertStore();
 
 export const useTaskStore = defineStore( 'task', {
     state: () => ({
         tasks:[
-            
-            {
-                title: "Estudar Vue",
-                description: "Estudar Vue com Vuetity"
-            },
-            {
-                title: "Ler Documentação",
-                description: "Estudar com Documentação Vue"
-            }
         ],
         titleTaskCreating: "",
         showDialogDelete: false,
         indexTaskSelected: 0,
         showDialogTasksField: false
-
     }),
     actions:{
         addTask(){
+            if(this.titleTaskCreating.length <= 5) return
             this.tasks.push({
                 title: this.titleTaskCreating
             })
-            this.titleTaskCreating=""
-            this.saveLocalData
+            this.titleTaskCreating = ""
+            this.saveLocalData()
+            alert.notifyAlert();
         },
         toggleDelete(index){
             this.showDialogDelete = !this.showDialogDelete;
             if(index != null) this.indexTaskSelected = index;
         },
         deleteTask () {
-            this.tasks.splice(this.indexTaskSelected,1)
+            this.tasks.splice(this.indexTaskSelected, 1)
             this.toggleDelete();
-            this.saveLocalData;
+            this.saveLocalData()  // Corrigido: adicionado parênteses
         },
         toggleEdit(index){
             this.showDialogTasksField = !this.showDialogTasksField;
             if(index != null){
                 this.indexTaskSelected = index;
             }
-            this.saveLocalData
+            this.saveLocalData()  // Corrigido: adicionado parênteses
         },
         saveLocalData(){
             localStorage.setItem('tasks', JSON.stringify(this.tasks))

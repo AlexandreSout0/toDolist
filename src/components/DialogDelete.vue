@@ -7,17 +7,17 @@
       >  
         <v-card
           prepend-icon="mdi-map-marker"
-          text="Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
-          title="Use Google's location service?"
+          title="Are you sure you want delete this task?"
+          text="This action can't be reverted ... "
         >
           <template v-slot:actions>
             <v-spacer></v-spacer>
   
-            <v-btn color="green-darken-1" variant="text" @click="$emit('toogleDelete')">
+            <v-btn color="red-darken-1" variant="elevated" @click="$emit('toogleDelete')">
                 No
             </v-btn>
   
-            <v-btn color="green-darken-1" variant="text" @click="taskStore.deleteTask()">
+            <v-btn color="red-darken-1" variant="outlined" @click="taskStore.deleteTask()">
                 Yes
             </v-btn>
           </template>
