@@ -7,10 +7,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Alert: typeof import('./src/components/Alert.vue')['default']
-    DialogDelete: typeof import('./src/components/DialogDelete.vue')['default']
-    DialogTaskFields: typeof import('./src/components/DialogTasksField.vue')['default']
-    DialogTasksField: typeof import('./src/components/DialogTasksField.vue')['default']
+    Alert: typeof import('./src/components/shared/Alert.vue')['default']
+    DialogDelete: typeof import('./src/components/dialogs/DialogDelete.vue')['default']
+    DialogTaskFields: typeof import('./src/components/dialogs/DialogTasksField.vue')['default']
+    DialogTasksField: typeof import('./src/components/dialogs/DialogTasksField.vue')['default']
     ListTasks: typeof import('./src/components/ListTasks.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

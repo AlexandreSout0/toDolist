@@ -19,7 +19,7 @@ export const useTaskStore = defineStore( 'task', {
             })
             this.titleTaskCreating = ""
             this.saveLocalData()
-            alert.notifyAlert();
+            alert.notifyAlertCreated();
         },
         toggleDelete(index){
             this.showDialogDelete = !this.showDialogDelete;
@@ -28,14 +28,19 @@ export const useTaskStore = defineStore( 'task', {
         deleteTask () {
             this.tasks.splice(this.indexTaskSelected, 1)
             this.toggleDelete();
-            this.saveLocalData()  // Corrigido: adicionado parênteses
+            this.saveLocalData();
+            alert.notifyAlertDeleted();
+        },
+        updateTask(){
+            this.saveLocalData();
+            this.toggleEdit();
+            alert.notifyAlertUpdated()
         },
         toggleEdit(index){
             this.showDialogTasksField = !this.showDialogTasksField;
             if(index != null){
                 this.indexTaskSelected = index;
             }
-            this.saveLocalData()  // Corrigido: adicionado parênteses
         },
         saveLocalData(){
             localStorage.setItem('tasks', JSON.stringify(this.tasks))
@@ -45,6 +50,11 @@ export const useTaskStore = defineStore( 'task', {
             if(itens){
                 this.tasks = JSON.parse(itens);
             }
+        },
+        toggleDoneTask(index){
+            this.tasks[index].done = !this.tasks[index].done;
+            this.saveLocalData();
+
         }
     }
 })
